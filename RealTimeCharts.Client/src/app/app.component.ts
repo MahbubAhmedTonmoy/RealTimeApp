@@ -28,8 +28,10 @@ export class AppComponent {
   ngOnInit() {
     this.signalRService.startConnection();
     this.signalRService.addTransferChartDataListener();
-    this.signalRService.addBroadcastChartDataListener();   
+    this.signalRService.addBroadcastChartDataListener();  
+    this.signalRService.addActiveUserListener(); 
     this.startHttpRequest();
+    console.log('AppComponent initialized');
   }
 
   private startHttpRequest = () => {
@@ -37,6 +39,11 @@ export class AppComponent {
       .subscribe(res => {
         console.log(res);
       })
+  }
+
+  addUserCount(){
+    console.log('Add button clicked');
+    this.signalRService.addActiveUserData(); 
   }
 
   public chartClicked = (event) => {

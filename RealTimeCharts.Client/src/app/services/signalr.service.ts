@@ -6,13 +6,15 @@ import { ChartModel } from '../_interfaces/chartmodel.model';
   providedIn: 'root'
 })
 export class SignalrService {
-  public data: ChartModel[];
+  public data: any[];
+  public activeUserCount: number;
   public bradcastedData: ChartModel[];
 
   private hubConnection: signalR.HubConnection
     public startConnection = () => {
       this.hubConnection = new signalR.HubConnectionBuilder()
-                              .withUrl('https://localhost:5001/chart')
+                              //.withUrl('https://localhost:5001/chart')
+                              .withUrl('https://localhost:5001/userCount')
                               .build();
       this.hubConnection
         .start()
@@ -28,6 +30,7 @@ export class SignalrService {
     }
 
     public broadcastChartData = () => {
+      console.log('bradcastedData data2 : ');
       const data = this.data.map(m => {
         const temp = {
           data: m.data,
@@ -43,6 +46,19 @@ export class SignalrService {
     public addBroadcastChartDataListener = () => {
       this.hubConnection.on('broadcastchartdata', (data) => {
         this.bradcastedData = data;
+        console.log('bradcastedData data : ', this.bradcastedData);
       })
+    }
+
+    public addActiveUserListener = () => {
+      this.hubConnection.on('activeusers', (data) => {
+        this.activeUserCount = data;
+        console.log('active user data : ', this.activeUserCount);
+      });
+    }
+  
+    public addActiveUserData = () => {
+      this.hubConnection.invoke('ActiveUsers') // Pass any necessary data as an argument, if needed
+        .catch(err => console.error(err));
     }
 }

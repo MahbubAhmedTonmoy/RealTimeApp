@@ -2,7 +2,7 @@
 using RealTimeCharts.Server.Models;
 
 namespace RealTimeCharts.Server.HubConfig
-{
+{ 
     public class ChartHub : Hub
     {
         public async Task BroadcastChartData(List<ChartModel> data) => 

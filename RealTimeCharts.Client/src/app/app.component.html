@@ -13,3 +13,9 @@
     <strong>Label: </strong> {{data.label}} - <strong>Value: </strong> {{data.data[0]}}
   </li>
 </ul>
+
+
+<div>
+  <p>Total Active User:</p> <span>{{signalRService.activeUserCount}}</span>
+  <button (click)="addUserCount()">Add</button>
+</div>
