@@ -33,5 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHub<ChartHub>("/chart");
 app.MapHub<UserHub>("/userCount");
-
+app.MapHub<ColorHub>("hub/view");
 app.Run();

@@ -1,3 +1,8 @@
+//create connection
+// on view update message from client
+//notify server we r watching
+//start connection
+
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr"
 import { ChartModel } from '../_interfaces/chartmodel.model';
