@@ -14,7 +14,9 @@ builder.Services.AddCors(options =>
         .AllowCredentials());
 });
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR()
+    //.AddStackExchangeRedis()  use redis
+    ;
 
 builder.Services.AddSingleton<TimerManager>();
 
